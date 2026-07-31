@@ -8,6 +8,9 @@ calcular_descuento(precio,descuento)
 
 #Ejercicio de funciones 2
 def verificacion(edad):
+    """"
+    Regresa True si tu edad es mayor o igual a 18
+    """
     if edad >= 18:
         return True
     else :
@@ -21,6 +24,9 @@ else:
 #Ejercicio de funciones 3
 
 def total_medallas(estrellas, bono_liga = 50):
+    """
+    Hace el calculo de tu total de medallas apartir de tus estrellas y tu bono de liga que puedes ingresar opcionalmente.
+    """
     return estrellas * 10 + bono_liga
 
 estrellas = int(input("Ingresa las estrellas conseguidas: "))
@@ -29,3 +35,5 @@ print(f"Tus estrellas totales con un bono de 50, son: {total_medallas(estrellas)
 estrellas = int(input("Ingresa las estrellas conseguidas: "))
 bono = int(input("Ingresa tu bono: "))
 print(f"Tus estrellas totales son: {total_medallas(estrellas,bono)}")
+
+print(total_medallas.__doc__)
