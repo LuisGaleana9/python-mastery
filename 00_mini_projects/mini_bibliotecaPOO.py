@@ -84,7 +84,6 @@ def menu():
     print("5.-Prestar un libro")
     print("6.-Devolver un libro")
     print("7.-Salir\n")
-    return int(input("Ingresa una opcion: "))
 
 def agregar_libro(biblioteca):
     titulo = input("Ingresa el nombre del libro: ")
@@ -120,7 +119,13 @@ def main():
 
     while eleccion != 7:
        
-        eleccion = menu()
+        menu()
+
+        try:
+            eleccion = int(input("Ingresa una opcion: "))
+        except ValueError:
+            print("Debes ingresar un numero.")
+            eleccion = 0
 
         match eleccion:
             case 1:
