@@ -32,23 +32,19 @@ class Biblioteca:
         self.biblioteca = []
 
     def vacia(self):
-        i = 0
-        for libro in self.biblioteca:
-            i+=1
-
-        if i > 0:
+        if len(self.biblioteca) > 0:
             return True
         else:
             print("La biblioteca esta vacia.")
             return False
 
-    def cargar_libros(self, Libro):
-        (self.biblioteca).append(Libro)
-        
     def agregar_libro(self, Libro):
-        with open("libros.txt", "a") as archivo:
-            archivo.write(f"{Libro.titulo},{Libro.autor},{Libro.disponible}\n")
-            (self.biblioteca).append(Libro)
+        (self.biblioteca).append(Libro)
+
+    def actualizar_datos(self):
+        with open("libros.txt", "w") as archivo:
+            for libro in self.biblioteca:
+                archivo.write(f"{libro.titulo},{libro.autor},{libro.disponible}\n")
 
     def eliminar_libro(self, titulo):
         for libro in self.biblioteca:
@@ -97,26 +93,29 @@ def agregar_libro(biblioteca):
 
     libro = Libro(titulo,autor,True)
     biblioteca.agregar_libro(libro)
+    biblioteca.actualizar_datos()
 
 def cargar_libro(biblioteca):
     with open("libros.txt") as archivo:
         libros = archivo.readlines()
 
         for libro in libros:
+            libro = libro.strip()
             libro = libro.split(",")
             titulol, autorl, dispol = libro
+            if dispol == "True":
+                dispol = True
+            else:
+                dispol = False
             libro = Libro(titulol,autorl,dispol)
-            biblioteca.cargar_libros(libro)
-
-def actualizar_datos(biblioteca):
-    with open("libros.txt", "w") as archivo:
-        biblioteca.
+            biblioteca.agregar_libro(libro)
         
 
 def eliminar_libro(biblioteca):
     if biblioteca.vacia():
         titulo = input("Ingresa el nombre del libro que deseas eliminar: ")
         biblioteca.eliminar_libro(titulo)
+        biblioteca.actualizar_datos()
 
 def buscar_libro(biblioteca):
     if biblioteca.vacia():
@@ -127,11 +126,13 @@ def prestar_libro(biblioteca):
     if biblioteca.vacia():
         titulo = input("Ingresa el nombre del libro que quieres prestar: ")
         biblioteca.prestar_libro(titulo)
+        biblioteca.actualizar_datos()
 
 def devolver_libro(biblioteca):
     if biblioteca.vacia():
-        titulo = input("Ingresa el nombre del libro que vas a devolver")
+        titulo = input("Ingresa el nombre del libro que vas a devolver: ")
         biblioteca.devolver_libro(titulo)
+        biblioteca.actualizar_datos()
 
 def main():
 
