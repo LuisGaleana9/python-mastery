@@ -1,4 +1,4 @@
-Habitos Atomicos,James Clear
-1995,Socrates
-PythonForBeginners,Sople
-Habitos 3,Clear
+Habitos Atomicos,James Clear,True
+Los ojos de mi princesa,Carlos Cuautemoc,True
+Ejemplo3,Autor3,True
+Hola,Adios,False
